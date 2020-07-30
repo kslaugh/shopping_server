@@ -10,8 +10,9 @@ def items_list(request):
         data = Items.objects.all()
 
         serializer = ItemSerializer(data, context={'request': request}, many=True)
+        contdata={'data': serializer.data}
 
-        return Response(serializer.data)
+        return Response(contdata)
 
     elif request.method == 'POST':
         serializer = ItemSerializer(data=request.data)
